@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHINOBI // Elite BJJ Armament</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#07080a',
+                        surface: '#111318',
+                        cardbg: '#171a21',
+                        accentred: '#e63946',
+                        accentgold: '#d4af37',
+                        steel: '#8d99ae'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .noise-bg {
+            background-image: radial-gradient(rgba(230, 57, 70, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+        }
+        .card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-white font-sans antialiased selection:bg-accentred selection:text-white noise-bg min-h-screen">
+
+    <!-- LANGUAGE SPLASH SCREEN -->
+    <div id="splash" class="fixed inset-0 z-50 bg-obsidian flex flex-col items-center justify-center p-6 transition-opacity duration-500">
+        <div class="absolute inset-0 bg-gradient-to-tr from-accentred/10 via-transparent to-accentgold/5 pointer-events-none"></div>
+        <div class="relative z-10 max-w-md w-full text-center space-y-8 bg-surface/90 border border-white/10 p-8 rounded-2xl card-shadow backdrop-blur-md">
+            <div class="space-y-2">
+                <span class="text-accentred font-mono text-xs tracking-widest uppercase">// SELECT BATTLEFRONT LANGUAGE</span>
+                <h1 class="text-3xl font-black tracking-tight text-white">SHINOBI ARMAMENT</h1>
+                <p class="text-steel text-sm">Engineered by champions. Forged for relentless daily combat.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="setLanguage('en')" class="group relative px-6 py-4 bg-cardbg hover:bg-accentred border border-white/10 hover:border-accentred rounded-xl font-bold tracking-wider transition-all duration-300 flex flex-col items-center gap-1">
+                    <span class="text-xl">🇬🇧</span>
+                    <span class="text-sm text-white">ENGLISH</span>
+                </button>
+                <button onclick="setLanguage('bg')" class="group relative px-6 py-4 bg-cardbg hover:bg-accentred border border-white/10 hover:border-accentred rounded-xl font-bold tracking-wider transition-all duration-300 flex flex-col items-center gap-1">
+                    <span class="text-xl">🇧🇬</span>
+                    <span class="text-sm text-white">БЪЛГАРСКИ</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div id="app" class="hidden opacity-0 transition-opacity duration-500">
+        
+        <!-- HEADER -->
+        <header class="sticky top-0 z-40 bg-obsidian/90 backdrop-blur-md border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-accentred rounded-full animate-ping"></div>
+                    <span class="font-black text-xl tracking-tighter uppercase text-white">SHINOBI<span class="text-accentred">.</span></span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:flex items-center gap-2 text-xs font-mono text-steel">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span data-lang-en="Direct Sales Hotline Active" data-lang-bg="Директна линия за поръчки активна">Direct Sales Hotline Active</span>
+                    </div>
+                    <!-- LANGUAGE TOGGLE -->
+                    <div class="bg-surface border border-white/10 rounded-full p-1 flex items-center">
+                        <button onclick="setLanguage('en')" id="lang-btn-en" class="px-3 py-1 rounded-full text-xs font-bold transition-all">EN</button>
+                        <button onclick="setLanguage('bg')" id="lang-btn-bg" class="px-3 py-1 rounded-full text-xs font-bold transition-all">BG</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="relative pt-20 pb-16 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 text-center space-y-6 relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accentred/10 border border-accentred/30 text-accentred text-xs font-mono tracking-widest uppercase">
+                    <span data-lang-en="Created By World Champions" data-lang-bg="Създадено от Световни Шампиони">Created By World Champions</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight max-w-4xl mx-auto uppercase leading-none">
+                    <span data-lang-en="ARMOR FOR THE" data-lang-bg="БРОНЯ ЗА">ARMOR FOR THE</span> <span class="text-accentred text-glow" data-lang-en="RELENTLESS" data-lang-bg="БЕЗКОМПРОМИСНИТЕ">RELENTLESS</span>
+                </h1>
+                <p class="text-steel text-lg max-w-xl mx-auto" data-lang-en="Elite BJJ gear engineered for heavy daily warfare on the mats. No compromises. Maximum durability." data-lang-bg="Елитна BJJ екипировка, проектирана за тежки ежедневни спаринги на татамито. Без компромиси. Максимална здравина.">
+                    Elite BJJ gear engineered for heavy daily warfare on the mats. No compromises. Maximum durability.
+                </p>
+            </div>
+        </section>
+
+        <!-- PRODUCTS SHOWCASE -->
+        <section class="py-12 max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- MODEL 1: KIMONO BLUE -->
+                <div class="bg-surface border border-white/10 rounded-3xl p-8 card-shadow flex flex-col justify-between relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-accentred text-white text-xs font-mono font-bold px-4 py-1.5 rounded-bl-2xl tracking-wider">
+                        <span data-lang-en="ROYAL BLUE" data-lang-bg="КРАЛСКО СИНИО">ROYAL BLUE</span>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="h-80 bg-cardbg rounded-2xl flex items-center justify-center p-4 border border-white/5 relative overflow-hidden">
+                            <img src="kimono-blue.png" alt="Kimono Blue" class="max-h-full object-contain filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-2xl font-black tracking-wide">APEX LA EDITION</h3>
+                                <span class="text-2xl font-mono font-bold text-accentgold">$169</span>
+                            </div>
+                            <p class="text-steel text-sm leading-relaxed" data-lang-en="Vibrant blue training kimono built from heavy-duty 450 GSM Pearl Weave for intense sparring sessions." data-lang-bg="Ярко синьо тренировъчно кимоно, изработено от здраво 450 GSM Pearl Weave за интензивни спаринги.">
+                                Vibrant blue training kimono built from heavy-duty 450 GSM Pearl Weave for intense sparring sessions.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 py-4 border-y border-white/10 font-mono text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-steel" data-lang-en="Top Weave:" data-lang-bg="Горнище:">Top Weave:</span>
+                                <span class="font-bold">450 GSM Pearl Weave</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-steel" data-lang-en="Pants:" data-lang-bg="Панталон:">Pants:</span>
+                                <span class="font-bold">100oz Reinforced Cotton</span>
+                            </div>
+                        </div>
+
+                        <!-- SIZE SELECTOR -->
+                        <div>
+                            <label class="block text-xs font-mono text-steel uppercase mb-2" data-lang-en="Available Sizes:" data-lang-bg="Налични Размери:">Available Sizes:</label>
+                            <div class="grid grid-cols-5 gap-2">
+                                <button class="py-2 bg-cardbg hover:bg-accentred border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A0</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentred border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A1</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentred border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A2</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentred border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A3</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentred border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A4</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xs text-steel font-mono" data-lang-en="Direct Sales Hotline:" data-lang-bg="Телефон за поръчки:">Direct Sales Hotline:</span>
+                            <a href="tel:+359888123456" class="text-lg font-mono font-bold text-white hover:text-accentred transition-colors">+359 888 123 456</a>
+                        </div>
+                        <a href="tel:+359888123456" class="px-6 py-3 bg-accentred hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-accentred/20" data-lang-en="Call to Order" data-lang-bg="Поръчай по Телефон">
+                            Call to Order
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MODEL 2: KIMONO BLACK -->
+                <div class="bg-surface border border-white/10 rounded-3xl p-8 card-shadow flex flex-col justify-between relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-accentgold text-obsidian text-xs font-mono font-bold px-4 py-1.5 rounded-bl-2xl tracking-wider">
+                        <span data-lang-en="STEALTH ONYX" data-lang-bg="ЧЕРЕН СТЕЛТ">STEALTH ONYX</span>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="h-80 bg-cardbg rounded-2xl flex items-center justify-center p-4 border border-white/5 relative overflow-hidden">
+                            <img src="kimono-black.png" alt="Kimono Black" class="max-h-full object-contain filter drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-2xl font-black tracking-wide">STEALTH ONYX</h3>
+                                <span class="text-2xl font-mono font-bold text-accentgold">$159</span>
+                            </div>
+                            <p class="text-steel text-sm leading-relaxed" data-lang-en="Clean black aesthetic with embroidered Moya badges. Preshrunk construction for brutal everyday mat use." data-lang-bg="Изчистен черен дизайн с бродирани емблеми. Конструкция без свиване за брутална ежедневна употреба.">
+                                Clean black aesthetic with embroidered Moya badges. Preshrunk construction for brutal everyday mat use.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2 py-4 border-y border-white/10 font-mono text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-steel" data-lang-en="Top Weave:" data-lang-bg="Горнище:">Top Weave:</span>
+                                <span class="font-bold">450 GSM Micro Pearl</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-steel" data-lang-en="Pants:" data-lang-bg="Панталон:">Pants:</span>
+                                <span class="font-bold">100oz Ripstop Canvas</span>
+                            </div>
+                        </div>
+
+                        <!-- SIZE SELECTOR -->
+                        <div>
+                            <label class="block text-xs font-mono text-steel uppercase mb-2" data-lang-en="Available Sizes:" data-lang-bg="Налични Размери:">Available Sizes:</label>
+                            <div class="grid grid-cols-5 gap-2">
+                                <button class="py-2 bg-cardbg hover:bg-accentgold hover:text-obsidian border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A0</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentgold hover:text-obsidian border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A1</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentgold hover:text-obsidian border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A2</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentgold hover:text-obsidian border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A3</button>
+                                <button class="py-2 bg-cardbg hover:bg-accentgold hover:text-obsidian border border-white/10 rounded-lg text-xs font-mono font-bold transition-all">A4</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="text-xs text-steel font-mono" data-lang-en="Direct Sales Hotline:" data-lang-bg="Телефон за поръчки:">Direct Sales Hotline:</span>
+                            <a href="tel:+359888123456" class="text-lg font-mono font-bold text-white hover:text-accentgold transition-colors">+359 888 123 456</a>
+                        </div>
+                        <a href="tel:+359888123456" class="px-6 py-3 bg-accentgold hover:bg-yellow-600 text-obsidian font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-accentgold/20" data-lang-en="Call to Order" data-lang-bg="Поръчай по Телефон">
+                            Call to Order
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-white/10 py-12 mt-12 bg-surface text-center text-xs font-mono text-steel">
+            <p>&copy; 2026 SHINOBI ARMAMENT. <span data-lang-en="All rights reserved." data-lang-bg="Всички права запазени.">All rights reserved.</span></p>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Hide splash screen smoothly
+            const splash = document.getElementById('splash');
+            const app = document.getElementById('app');
+            
+            if (splash.style.display !== 'none') {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    app.classList.remove('hidden');
+                    setTimeout(() => app.classList.remove('opacity-0'), 50);
+                }, 500);
+            }
+
+            // Update text elements
+            document.querySelectorAll('[data-lang-en]').forEach(el => {
+                const text = el.getAttribute(`data-lang-${lang}`);
+                if (text) el.textContent = text;
+            });
+
+            // Update language toggle buttons
+            const btnEn = document.getElementById('lang-btn-en');
+            const btnBg = document.getElementById('lang-btn-bg');
+            if (lang === 'en') {
+                btnEn.className = 'px-3 py-1 rounded-full text-xs font-bold bg-accentred text-white transition-all';
+                btnBg.className = 'px-3 py-1 rounded-full text-xs font-bold text-steel hover:text-white transition-all';
+            } else {
+                btnBg.className = 'px-3 py-1 rounded-full text-xs font-bold bg-accentred text-white transition-all';
+                btnEn.className = 'px-3 py-1 rounded-full text-xs font-bold text-steel hover:text-white transition-all';
+            }
+        }
+    </script>
+</body>
+</html>
